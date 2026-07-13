@@ -25,6 +25,121 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="shortcut icon" type="image/png" href="images/website-icon-2.png"/>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Accent font: used for section headings and the Featured Project pill -->
+		<link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@700&display=swap" rel="stylesheet">
+
+		<!-- 
+			Sitewide accent theme
+			Core colors: Purple (primary, used broadly) + Pink (reserved for the Featured Project highlight and hover accents)
+			This block sits after main.css on purpose so it can override the template's default styling without editing main.css directly.
+		-->
+		<style>
+			:root {
+				--accent-purple: #4215e8;
+				--accent-purple-dark: #2a0da8;
+				--accent-purple-light: #7a5cf0;
+				--accent-pink: #f92dbb;
+				--accent-ink: #1a1033;
+			}
+
+			/* Section headings get a little personality and a purple underline accent instead of the default line */
+			h2.major {
+				font-family: 'Inclusive Sans', sans-serif;
+				display: inline-block;
+				position: relative;
+				padding-bottom: 14px;
+			}
+			h2.major:after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 60px;
+				height: 4px;
+				background: var(--accent-purple);
+				border-radius: 2px;
+			}
+
+			/* Nav hover accent */
+			#header nav a:hover,
+			#menu a:hover {
+				color: var(--accent-pink) !important;
+			}
+
+			/* "VIEW PROJECT" / "VIEW CERTIFICATE" buttons inside cards: pink, matching the Featured Project CTA */
+			.button.primary {
+				background: var(--accent-pink) !important;
+				border: 3px solid #000 !important;
+				border-radius: 14px !important;
+				box-shadow: 4px 4px 0px #000;
+				color: var(--accent-ink) !important;
+				transition: transform 0.15s ease, box-shadow 0.15s ease;
+			}
+			.button.primary:hover {
+				transform: translate(-2px, -2px);
+				box-shadow: 6px 6px 0px #000;
+			}
+
+			/* "VIEW MY PROFILE" and other standalone CTA links: purple, sized to content instead of the template's full-width bar */
+			a.special {
+				display: inline-block !important;
+				width: auto !important;
+				background: var(--accent-purple) !important;
+				border: 3px solid #000 !important;
+				border-radius: 14px !important;
+				box-shadow: 4px 4px 0px #000;
+				color: #fff !important;
+				padding: 12px 24px !important;
+				text-align: center;
+				transition: transform 0.15s ease, box-shadow 0.15s ease;
+			}
+			a.special:before,
+			a.special:after {
+				display: none !important;
+			}
+			a.special:hover {
+				transform: translate(-2px, -2px);
+				box-shadow: 6px 6px 0px #000;
+			}
+
+			/* Card titles get the same purple pill treatment as the Featured Project heading */
+			.features article h3.major {
+				font-family: 'Inclusive Sans', sans-serif;
+				background: var(--accent-purple);
+				color: #fff;
+				padding: 6px 14px;
+				border-radius: 8px;
+				display: inline-block;
+				font-size: 15px;
+			}
+
+			/* Project/certificate/experience cards: thin black border and small black shadow, matching the buttons */
+			.features article {
+				border: 3px solid #000;
+				border-radius: 14px;
+				padding: 20px;
+				background: rgba(255,255,255,0.03);
+				box-shadow: 5px 5px 0px #000;
+				transition: transform 0.15s ease, box-shadow 0.15s ease;
+			}
+			.features article:hover {
+				transform: translate(-2px, -2px);
+				box-shadow: 7px 7px 0px #000;
+			}
+			.features article .image {
+				border: 3px solid #000;
+				border-radius: 10px;
+				overflow: hidden;
+				display: block;
+			}
+			/* Banner logo frame */
+			#banner .logo img {
+				border: 3px solid #000;
+				border-radius: 50%;
+				box-shadow: 4px 4px 0px #000;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -104,37 +219,37 @@
 									<a href="https://www.linkedin.com/in/ginofreudhobayan/" 
 									target="_blank" class="image"><img src="images/Gino - gala uniform.png" alt="" /></a>
 									<div class="content">
-										<h2 class="major">About me</h2>
-										<p>
-											Before becoming a tech professional, I was a consistent Academic scholar who took up
-											a career in Marine Transportation, 
-											where I got Licensed as a Merchant Marine Officer
-											and worked onboard oil-chemical tankers 
-											as a Seafarer for almost 3 years.
-											<br /><br />
-											When the COVID-19 pandemic put that career to a halt, 
-											I quickly adapted and acquired new skills, 
-											I then started working in the Financial Services industry and Sales for almost 2 years before 
-											becoming a tech professional.
+									<h2 class="major">About me</h2>
+									<p>
+										I'm a tech professional with a background that's a bit different from most in the field.
+										Before tech, I was a consistent academic scholar who took up
+										a career in Marine Transportation, 
+										where I got licensed as a Merchant Marine Officer
+										and worked onboard oil-chemical tankers 
+										as a Seafarer for almost 3 years.
+										<br />
+										When the COVID-19 pandemic put that career on hold, 
+										I adapted and picked up new skills, 
+										working in the Financial Services industry and Sales for almost 2 years before 
+										moving into tech.
 
-											<br /><br />
-											I created several Capstone projects, Studied Mathematics,
-											finished the Google Data Analytics Professional Certificate, 
-											and even completed a Data Science and Business Analytics Internship at The Sparks Foundation.
+										<br />
+										Since then, I've completed several capstone projects, studied Mathematics,
+										finished the Google Data Analytics Professional Certificate, 
+										and completed a Data Science and Business Analytics Internship at The Sparks Foundation.
 
-											
-											<br /><br />
-											Currently, I have been working on building projects 
-											to further improve my skills and knowledge 
-											and and to continue building
-											a strong foundation in software development and mathematics.
-
-											
-											
-											<br /><br />
-											I have also been engaging in physical activities like weightlifting and running 
-											as I believe there is a strong positive correlation between physical and mental health.
-										</p>
+										
+										<br />
+										I've also been building a strong foundation in software development,
+										with a particular focus on game development. I'm currently developing 
+										<i>Survivor's Mask</i>, a solo 2D action RPG in Unity, as I continue exploring 
+										where my skills in data, software, and game development can take me.
+										
+										
+										<br />
+										Outside of work, I stay active through weightlifting and running, 
+										since I believe there's a strong positive correlation between physical and mental health.
+									</p>
 										<a href="https://www.linkedin.com/in/ginofreudhobayan/" 
 										target="_blank" class="special">VIEW MY PROFILE</a>
 									</div>
@@ -147,18 +262,64 @@
 						<!-- Two -->
 						<section id="two" class="wrapper alt spotlight style2">
 							<style>
+								#two .inner {
+									background: var(--accent-ink);
+									border: 4px solid #000;
+									border-radius: 20px;
+									box-shadow: 10px 10px 0px #000;
+									padding: 40px;
+								}
 								#two .image {
 									border-radius: 16px;
 									overflow: hidden;
 									width: 100%;
 									max-width: 600px;
 									aspect-ratio: 937 / 523;
+									border: 4px solid #000;
+									box-shadow: 6px 6px 0px #000;
 								}
 								#two .image img {
-									border-radius: 16px;
+									border-radius: 12px;
 									width: 100%;
 									height: 100%;
 									object-fit: contain;
+								}
+								#two .content h2.major {
+									font-family: 'Inclusive Sans', sans-serif;
+									background: var(--accent-purple);
+									color: #fff;
+									padding: 6px 16px;
+									border-radius: 8px;
+									display: inline-block;
+								}
+								#two .content h2.major:after {
+									display: none;
+								}
+								#two .status-tag {
+									display: inline-block;
+									font-size: 11px;
+									font-weight: 600;
+									background: transparent;
+									border: 1.5px solid rgba(255,255,255,0.35);
+									color: rgba(255,255,255,0.75);
+									padding: 3px 9px;
+									border-radius: 20px;
+									letter-spacing: 0.5px;
+									margin-left: 8px;
+									vertical-align: middle;
+								}
+								#two .content p,
+								#two .content li {
+									color: #e8e4f5;
+								}
+								#two .special {
+									background: var(--accent-pink) !important;
+									color: var(--accent-ink) !important;
+									border: 3px solid #000 !important;
+									box-shadow: 5px 5px 0px #000 !important;
+								}
+								#two .special:hover {
+									box-shadow: 7px 7px 0px #000 !important;
 								}
 							</style>
 							<div class="inner">
@@ -166,9 +327,10 @@
 								target="_blank" class="image"><img src="images/SurvivorsMask-Menu.png" alt="" /></a>
 								<div class="content">
 									<h2 class="major">Featured Project</h2>
+									<span class="status-tag">IN PROGRESS</span>
 									<p>
 										<b>Survivor's Mask</b> is a top-down 2D action RPG built in Unity 6 with C#, 
-										developed solo as one of my portfolio projects. (In progress)
+										developed solo as one of my portfolio projects.
 										
 										<br /><br />
 
