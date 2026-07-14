@@ -43,6 +43,136 @@
 				--accent-ink: #1a1033;
 			}
 
+			/* Section backgrounds shifted from the template's default slate blue to an ink-purple family, so the purple/pink accents feel native to the page instead of dropped on top of a different color world */
+			#one {
+				background: var(--accent-ink) !important;
+			}
+			#two {
+				background: var(--accent-ink) !important;
+			}
+			[id="Top Skills and tools"] {
+				background: var(--accent-ink) !important;
+			}
+			#projects {
+				background: var(--accent-ink) !important;
+			}
+			#experience {
+				background: var(--accent-ink) !important;
+			}
+			#certificates {
+				background: var(--accent-ink) !important;
+			}
+			#footer {
+				background: var(--accent-ink) !important;
+			}
+
+			/* The template's diagonal section dividers are separate ::before/::after elements with the old blue baked into an inline SVG image, not a plain background-color. Recoloring them here so they match the ink-purple sections above instead of the leftover template blue. */
+			.wrapper:before,
+			.wrapper:after {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%231a1033%3B' /%3E%3C/svg%3E") !important;
+			}
+			.wrapper:before {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+			.wrapper:after {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+			.wrapper.spotlight:before,
+			.wrapper.spotlight:after {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%231a1033%3B' /%3E%3C/svg%3E") !important;
+			}
+			.wrapper.spotlight:before {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+			.wrapper.spotlight:after {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+			.wrapper.spotlight.style2:before,
+			.wrapper.spotlight.style2:after {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%231a1033%3B' /%3E%3C/svg%3E") !important;
+			}
+			.wrapper.spotlight.style2:before {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+			.wrapper.spotlight.style2:after {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+
+			/* Catch-all: the template has style2 through style6 variants for both plain and spotlight wrappers. Only style1/style2 are used in the HTML, but overriding all of them removes any chance of a leftover gray triangle from a variant we didn't expect. */
+			.wrapper.style2:before, .wrapper.style2:after,
+			.wrapper.style3:before, .wrapper.style3:after,
+			.wrapper.style4:before, .wrapper.style4:after,
+			.wrapper.style5:before, .wrapper.style5:after,
+			.wrapper.style6:before, .wrapper.style6:after,
+			.wrapper.spotlight.style3:before, .wrapper.spotlight.style3:after,
+			.wrapper.spotlight.style4:before, .wrapper.spotlight.style4:after,
+			.wrapper.spotlight.style5:before, .wrapper.spotlight.style5:after,
+			.wrapper.spotlight.style6:before, .wrapper.spotlight.style6:after {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%231a1033%3B' /%3E%3C/svg%3E") !important;
+			}
+			.wrapper.style2:before, .wrapper.style3:before, .wrapper.style4:before, .wrapper.style5:before, .wrapper.style6:before,
+			.wrapper.spotlight.style3:before, .wrapper.spotlight.style4:before, .wrapper.spotlight.style5:before, .wrapper.spotlight.style6:before,
+			.wrapper.style2:after, .wrapper.style3:after, .wrapper.style4:after, .wrapper.style5:after, .wrapper.style6:after,
+			.wrapper.spotlight.style3:after, .wrapper.spotlight.style4:after, .wrapper.spotlight.style5:after, .wrapper.spotlight.style6:after {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+
+			/* Root cause: the page <body> itself has a hardcoded gray background plus a fixed background image, completely separate from any section. It shows through the transparent gaps in the diagonal triangle shapes, which is the gray that kept surviving every section-level override above. */
+			body {
+				background-color: var(--accent-ink) !important;
+				background-image: none !important;
+			}
+
+			/* #banner only gets an explicit gray background inside main.css's "max-width: 1280px" media query. Above that width it has no background of its own and just shows body through. That's why it looked fine zoomed out (viewport effectively wider than 1280px) but gray at 100% zoom on a ~1263px window (media query active). Giving it a permanent, unconditional background fixes it at every zoom level. */
+			#banner {
+				background-color: var(--accent-ink) !important;
+				background-image: none !important;
+			}
+
+			/* Header nav bar, split by scroll state.
+			#header.alt = at the top, over the banner (this is the template's own state,
+			toggled by main.js as you scroll). Pink background, black text here.
+			#header:not(.alt) = scrolled past the banner. Background fades to the same
+			ink as the page (blends in instead of staying solid pink), and the nav text
+			switches to pink so it stays readable against the dark background. The
+			background-color transition is already defined on #header in main.css, so
+			this crossfades instead of jump-cutting. */
+			#header.alt {
+				background-color: var(--accent-pink) !important;
+			}
+			#header.alt h1 a,
+			#header.alt nav a {
+				color: var(--accent-ink) !important;
+			}
+			#header.alt nav a:hover {
+				color: #fff !important;
+			}
+
+			#header:not(.alt) {
+				background-color: var(--accent-ink) !important;
+			}
+			#header:not(.alt) h1 a,
+			#header:not(.alt) nav a {
+				color: var(--accent-pink) !important;
+			}
+			#header:not(.alt) nav a:hover {
+				color: #fff !important;
+			}
+
+			/* Belt-and-suspenders: ID + class scoped rules for every actual section on this page, guaranteed to out-specificity anything else that could still be painting a triangle gray */
+			#one:before, #one:after,
+			#two:before, #two:after,
+			[id="Top Skills and tools"]:before, [id="Top Skills and tools"]:after,
+			#projects:before, #projects:after,
+			#experience:before, #experience:after,
+			#certificates:before, #certificates:after {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%231a1033%3B' /%3E%3C/svg%3E") !important;
+			}
+			#one:before, #two:before, [id="Top Skills and tools"]:before, #projects:before, #experience:before, #certificates:before,
+			#one:after, #two:after, [id="Top Skills and tools"]:after, #projects:after, #experience:after, #certificates:after {
+				box-shadow: inset 0 -1px 0 0 #1a1033, 0 1px 0 0 #1a1033 !important;
+			}
+
 			/* Section headings get a little personality and a purple underline accent instead of the default line */
 			h2.major {
 				font-family: 'Inclusive Sans', sans-serif;
@@ -61,8 +191,7 @@
 				border-radius: 2px;
 			}
 
-			/* Nav hover accent */
-			#header nav a:hover,
+			/* Mobile slide-out menu hover accent (this panel is unaffected by the header's new pink background) */
 			#menu a:hover {
 				color: var(--accent-pink) !important;
 			}
@@ -233,10 +362,25 @@
 										text-decoration: none;
 										transition: transform 0.15s ease, box-shadow 0.15s ease;
 										margin-bottom: 20px;
+									-webkit-appearance: none;
+									appearance: none;
+									-webkit-tap-highlight-color: transparent;
+									outline: none;
 									}
 									.bio-toggle:hover {
 										transform: translate(-2px, -2px);
 										box-shadow: 6px 6px 0px #000;
+									}
+									.bio-toggle:active,
+									.bio-toggle:focus,
+									.bio-toggle:visited {
+										background: var(--accent-pink);
+										color: var(--accent-ink);
+										outline: none;
+									}
+									.bio-toggle:active {
+										transform: translate(0, 0);
+										box-shadow: 2px 2px 0px #000;
 									}
 									.bio-toggle .arrow {
 										display: inline-block;
@@ -476,7 +620,7 @@
 
 											</p>
 											<a href="https://youtu.be/2eh4Ij3p_9I" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">WATCH VIDEO</a>
 										</article>
 
 
@@ -501,7 +645,7 @@
 
 											</p>
 											<a href="https://gino-freud-hobayan.itch.io/lipad-adarna" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">PLAY GAME</a>
 										</article>
 
 
@@ -532,7 +676,7 @@
 
 											</p>
 											<a href="https://github.com/Gino-Freud-Hobayan/Instacart-Analysis__SQL-Capstone-Project" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW CODE</a>
 										</article>
 
 
@@ -554,7 +698,7 @@
 												
 											</p>
 											<a href="https://public.tableau.com/app/profile/gino.freud.hobayan" 
-											target="_blank" class="button primary"> VIEW PROJECT </a>
+											target="_blank" class="button primary"> VIEW DASHBOARD </a>
 										</article>
 
 
@@ -590,7 +734,7 @@
 												
 											</p>
 											<a href="https://youtu.be/jvPdYeK8zqw" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">WATCH VIDEO</a>
 										</article>
 
 
@@ -622,7 +766,7 @@
 
 											</p>
 											<a href="https://youtu.be/dStO09JZ5F4?si=1ScjkKKjTBWH0lZg" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">WATCH VIDEO</a>
 										</article>
 
 
@@ -652,7 +796,7 @@
 
 											</p>
 											<a href="https://github.com/Gino-Freud-Hobayan/8WeekSQL_Challenge" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW CODE</a>
 										</article>
 
 
@@ -682,7 +826,7 @@
 
 											</p>
 											<a href="https://github.com/Gino-Freud-Hobayan/8WeekSQL_Challenge/blob/main/2.)%20Pizza%20Runner/README.md" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW CODE</a>
 										</article>
 
 
@@ -702,7 +846,7 @@
 											
 											</p>
 											<a href="https://github.com/Gino-Freud-Hobayan/8WeekSQL_Challenge/tree/main/7.)%20Balanced%20Tree%20Clothing%20Store" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW CODE</a>
 										</article>
 										
 
@@ -721,7 +865,7 @@
 
 											</p>
 											<a href="https://github.com/Gino-Freud-Hobayan/Exploratory_Data_Analysis_COVID19_on_Python" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW CODE</a>
 										</article>
 
 
@@ -755,7 +899,7 @@
 
 											</p>
 											<a href="https://docs.google.com/document/d/1OK3--76YmzK1e-vCdufBhnWKG8oMsfv2HeFJ674inPI/edit" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW DOCUMENT</a>
 										</article>
 
 
@@ -781,7 +925,7 @@
 												- Dashboard creation <br />
 											</p>
 											<a href="https://github.com/Gino-Freud-Hobayan/Excel_Project_Dataset_Gino" 
-											target="_blank" class="button primary">VIEW PROJECT</a>
+											target="_blank" class="button primary">VIEW CODE</a>
 										</article>
 
 
@@ -991,7 +1135,7 @@
 											
 										</p>
 										<a href="https://drive.google.com/drive/folders/1bm1W18TAGXojI2IHp__xf7eBKgKlVBRb?usp=sharing" 
-										target="_blank" class="button primary"> VIEW CERTIFICATE </a>
+										target="_blank" class="button primary"> VIEW CERTIFICATES </a>
 									</article>
 
 
@@ -1040,7 +1184,7 @@
 											
 										</p>
 										<a href="https://drive.google.com/drive/folders/1JNQiJER62XDQxwjf0vEFCuscH6TluzUS?usp=sharing" 
-										target="_blank" class="button primary"> VIEW CERTIFICATE </a>
+										target="_blank" class="button primary"> VIEW CERTIFICATES </a>
 									</article>
 
 
